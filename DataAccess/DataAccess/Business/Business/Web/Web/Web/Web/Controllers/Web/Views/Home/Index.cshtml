@@ -1,0 +1,22 @@
+@model List<NtierFinalProject.Models.TaskItem>
+<h1>قائمة المهام</h1>
+<ul>
+    @foreach (var task in Model)
+    {
+        <li>
+            @if(task.IsComplete) { <s>@task.Title</s> }
+            else
+            {
+                @task.Title
+                <form method="post" asp-action="CompleteTask">
+                    <input type="hidden" name="id" value="@task.Id" />
+                    <button type="submit">اكتملت</button>
+                </form>
+            }
+        </li>
+    }
+</ul>
+<form method="post" asp-action="AddTask">
+    <input type="text" name="title" />
+    <button type="submit">إضافة</button>
+</form>
